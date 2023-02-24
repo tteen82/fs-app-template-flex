@@ -17,7 +17,7 @@ const NnList = db.define('nnlist', {
   },
   imageUrl: {
     type: Sequelize.STRING,
-    defaultValue: 'no-image-icon.png',
+    defaultValue: '../../no-image-icon.png',
     allowNull: true,
   },
   isNice: {

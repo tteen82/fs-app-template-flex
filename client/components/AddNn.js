@@ -14,6 +14,7 @@ import Rating from '@mui/material/Rating';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
+import BorderColorIcon from '@mui/icons-material/BorderColor';
 /**
  * COMPONENT
  */
@@ -51,20 +52,26 @@ class AddNn extends React.Component {
     const { handleSubmit, handleChange } = this;
     const { isNice } = this.state;
     return (
-      <div>
-        <form onSubmit={handleSubmit} className="campusCreateForm">
-          <label htmlFor="title">Title</label>
-          <input
+      <Box>
+        <form onSubmit={handleSubmit}>
+          <TextField
+            id="title"
+            label="Title"
             name="nnTitle"
-            placeholder="Title"
             onChange={handleChange}
-          ></input>
-          <label htmlFor="description">description</label>
-          <input
+            sx={{
+              width: 320,
+            }}
+          />
+          <TextField
+            id="description"
+            label="Description"
             name="description"
-            placeholder="Description"
             onChange={handleChange}
-          ></input>
+            sx={{
+              width: 320,
+            }}
+          />
           <div>
             <FormControlLabel
               control={
@@ -91,9 +98,15 @@ class AddNn extends React.Component {
               label="Naughty"
             />
           </div>
-          <button>Create</button>
+          <Button
+            variant="contained"
+            endIcon={<BorderColorIcon />}
+            onClick={handleSubmit}
+          >
+            Post
+          </Button>
         </form>
-      </div>
+      </Box>
     );
   }
 }

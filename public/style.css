@@ -19,3 +19,21 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+
+#smlist {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#main {
+  margin: auto;
+  display: flex;
+  align-items: left;
+  flex-direction: column;
+  width: 50%;
+}
+
+#login {
+  display: flex;
+  align-items: center;
+}

@@ -7,6 +7,7 @@ const TOKEN = 'token';
  * ACTION TYPES
  */
 const SET_AUTH = 'SET_AUTH';
+const UPDATE_AUTH = 'UPDATE_AUTH';
 
 /**
  * ACTION CREATORS
@@ -48,12 +49,22 @@ export const logout = () => {
   };
 };
 
+export const updateAuth = (data) => {
+  console.log('return data', data);
+  return async (dispatch) => {
+    const response = await axios.put(`/auth/${data.id}`, data);
+    dispatch({ type: 'UPDATE_AUTH', auth: response.data });
+  };
+};
+
 /**
  * REDUCER
  */
 export default function (state = {}, action) {
   switch (action.type) {
     case SET_AUTH:
+      return action.auth;
+    case UPDATE_AUTH:
       return action.auth;
     default:
       return state;

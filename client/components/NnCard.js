@@ -7,42 +7,76 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
-
+import timeAgo from 'node-time-ago';
 /**
  * COMPONENT
  */
 export const NnCard = ({ list }) => {
-  const { nnTitle, isNice } = list;
+  const { nnTitle, isNice, createdAt } = list;
   const comments = list.comments || [];
   return (
     <Box>
-      <Card
-        sx={{
-          width: 400,
-          height: 400,
-          margin: 1,
-          padding: 1,
-        }}
-      >
-        <CardContent
+      {isNice ? (
+        <Card
           sx={{
-            display: 'flex',
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'space-around',
+            width: 200,
+            height: 200,
+            margin: 1,
+            padding: 1,
+            backgroundColor: '#D4EFDF',
           }}
         >
-          <Typography variant="body2" color="text.secondary">
-            {nnTitle}
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            {isNice ? 'Nice' : 'Naughty'}
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            comments({comments.length})
-          </Typography>
-        </CardContent>
-      </Card>
+          <CardContent
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+            }}
+          >
+            <Typography variant="body2" color="text.secondary">
+              {nnTitle}
+            </Typography>
+            <Typography variant="h5" color="text.secondary">
+              {isNice ? 'Nice' : 'Naughty'}
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              comments({comments.length})
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              {timeAgo(createdAt)}
+            </Typography>
+          </CardContent>
+        </Card>
+      ) : (
+        <Card
+          sx={{
+            width: 200,
+            height: 200,
+            margin: 1,
+            padding: 1,
+            backgroundColor: '#F1948A',
+          }}
+        >
+          <CardContent
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+            }}
+          >
+            <Typography variant="body2" color="text.secondary">
+              {nnTitle}
+            </Typography>
+            <Typography variant="h5" color="text.secondary">
+              {isNice ? 'Nice' : 'Naughty'}
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              comments({comments.length})
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              {timeAgo(createdAt)}
+            </Typography>
+          </CardContent>
+        </Card>
+      )}
     </Box>
   );
 };

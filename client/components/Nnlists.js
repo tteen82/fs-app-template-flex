@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { setNnlists } from '../store';
 import NnCard from './NnCard';
 import { Link, Switch, Route } from 'react-router-dom';
+import Button from '@mui/material/Button';
 
 /**
  * COMPONENT
@@ -43,26 +44,40 @@ class Nnlists extends React.Component {
     return (
       <div>
         <form onClick={handleClick}>
-          <button value="all">Show All</button>
-          <button value="nice">Show Nice</button>
-          <button value="naughty">Show Naughty</button>
+          <Button
+            value="all"
+            sx={{ backgroundColor: '#27AE60', color: '#2C3E50', margin: 0.5 }}
+          >
+            Show All
+          </Button>
+          <Button
+            value="nice"
+            sx={{ backgroundColor: '#27AE60', color: '#2C3E50', margin: 0.5 }}
+          >
+            Show Nice
+          </Button>
+          <Button
+            value="naughty"
+            sx={{ backgroundColor: '#27AE60', color: '#2C3E50', margin: 0.5 }}
+          >
+            Show Naughty
+          </Button>
         </form>
-        <ul>
+        <div id="smlist">
           {nnLists.map((list) => (
-            <li key={list.id}>
-              <Link
-                to={{
-                  pathname: `/home/nnlists/${list.id}`,
-                  state: {
-                    list,
-                  },
-                }}
-              >
-                <NnCard list={list} />
-              </Link>
-            </li>
+            <Link
+              key={list.id}
+              to={{
+                pathname: `/home/nnlists/${list.id}`,
+                state: {
+                  list,
+                },
+              }}
+            >
+              <NnCard list={list} />
+            </Link>
           ))}
-        </ul>
+        </div>
       </div>
     );
   }

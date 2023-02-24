@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { deleteNnList } from '../store';
+import Comments from './Comments';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -8,7 +9,8 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import Paper from '@mui/material/Paper';
+import ClearIcon from '@mui/icons-material/Clear';
+import timeAgo from 'node-time-ago';
 
 /**
  * COMPONENT
@@ -18,20 +20,12 @@ export const SingleNn = (props) => {
   const { deleteNnList } = props;
   return (
     <Box>
-      <Card sx={{ maxWidth: 345, margin: 1, padding: 1 }}>
-        <CardMedia sx={{ height: 140 }} image={list.imageUrl} title="image" />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
-            {list.nnTitle}
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            {list.description}
-          </Typography>
-        </CardContent>
-        <CardActions>
-          <Button size="small">Thumbs Up</Button>
-          <Button size="small">ADD Comments</Button>
+      <Card
+        sx={{ width: 400, margin: 1, padding: 1, backgroundColor: '#F9EBEA' }}
+      >
+        <CardActions sx={{ display: 'flex', justifyContent: 'flex-end' }}>
           <Button
+            endIcon={<ClearIcon />}
             size="small"
             onClick={() => {
               deleteNnList(list.id);
@@ -41,12 +35,24 @@ export const SingleNn = (props) => {
             Delete
           </Button>
         </CardActions>
+        <CardMedia
+          sx={{ height: 300, width: 300, margin: 'auto' }}
+          image={list.imageUrl}
+          title="image"
+        />
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="div">
+            {list.nnTitle}
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            {list.description}
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            {timeAgo(list.createdAt)}
+          </Typography>
+        </CardContent>
       </Card>
-      {list.comments.map((comment) => (
-        <Paper key={comment.id} sx={{ maxWidth: 345, margin: 1, padding: 1 }}>
-          {comment.comment}
-        </Paper>
-      ))}
+      <Comments id={list.id} />
     </Box>
   );
 };
