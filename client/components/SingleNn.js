@@ -19,7 +19,13 @@ export const SingleNn = (props) => {
   const { list } = props.location.state;
   const { deleteNnList } = props;
   return (
-    <Box>
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+      }}
+    >
       <Card
         sx={{ width: 400, margin: 1, padding: 1, backgroundColor: '#F9EBEA' }}
       >
@@ -29,11 +35,8 @@ export const SingleNn = (props) => {
             size="small"
             onClick={() => {
               deleteNnList(list.id);
-              props.history.push('../');
             }}
-          >
-            Delete
-          </Button>
+          ></Button>
         </CardActions>
         <CardMedia
           sx={{ height: 300, width: 300, margin: 'auto' }}
@@ -41,6 +44,9 @@ export const SingleNn = (props) => {
           title="image"
         />
         <CardContent>
+          <Typography gutterBottom variant="body2" component="div">
+            {list.user.username}
+          </Typography>
           <Typography gutterBottom variant="h5" component="div">
             {list.nnTitle}
           </Typography>

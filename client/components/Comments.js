@@ -4,10 +4,9 @@ import { setComments, addComment, deleteComment } from '../store';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
-import ClearIcon from '@mui/icons-material/Clear';
+
 /**
  * COMPONENT
  */
@@ -40,7 +39,7 @@ class Comments extends React.Component {
     const { comments, deleteComment } = this.props;
     const { handleSubmit, handleChange } = this;
     return (
-      <Box sx={{ width: 400 }}>
+      <Box sx={{ width: 430 }}>
         {comments.map((comment) => (
           <Paper
             key={comment.id}

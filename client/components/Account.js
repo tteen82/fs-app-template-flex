@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { updateAuth } from '../store';
 import SantaPower from './SantaPower';
-import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { setNnlists } from '../store';
+import { setNnlists, setSantaLists, me } from '../store';
 import NnCard from './NnCard';
 import { Link, Switch, Route } from 'react-router-dom';
 import Button from '@mui/material/Button';
@@ -17,7 +17,13 @@ class Nnlists extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
   componentDidMount() {
-    this.props.setNnlists(this.props.auth.id);
+    if (this.props.auth.username === 'santa') {
+      this.props.setSantaLists();
+      this.props.loadInitialData();
+    } else {
+      this.props.setNnlists(this.props.auth.id);
+      this.props.loadInitialData();
+    }
   }
   componentDidUpdate() {
     if (this.state.nnList === null) {
@@ -89,6 +95,12 @@ class Nnlists extends React.Component {
 const mapDispatchToProps = (dispatch) => ({
   setNnlists: (id) => {
     dispatch(setNnlists(id));
+  },
+  setSantaLists: () => {
+    dispatch(setSantaLists());
+  },
+  loadInitialData: () => {
+    dispatch(me());
   },
 });
 

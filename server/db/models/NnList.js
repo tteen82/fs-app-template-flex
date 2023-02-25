@@ -34,6 +34,10 @@ const NnList = db.define('nnlist', {
     type: Sequelize.INTEGER,
     defaultValue: 0,
   },
+  myImage: {
+    type: Sequelize.TEXT,
+    allowNull: true,
+  },
 });
 
 module.exports = NnList;

@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import { logout } from '../store';
 import Typography from '@mui/material/Typography';
 import Toolbar from '@mui/material/Toolbar';
-import Paper from '@mui/material/Paper';
 
 const Navbar = ({ handleClick, isLoggedIn }) => (
   <div>
