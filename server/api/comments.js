@@ -9,6 +9,7 @@ router.get('/:id', async (req, res, next) => {
     const comments = await Comment.findAll({
       where: { nnlistId: req.params.id },
       include: [User],
+      order: [['updatedAt', 'DESC']],
     });
     res.json(comments);
   } catch (err) {

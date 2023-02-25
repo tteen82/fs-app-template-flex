@@ -1,34 +1,33 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addNnlist } from '../store';
+import { addNnlist, me } from '../store';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
 import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
 import ThumbDownOffAltIcon from '@mui/icons-material/ThumbDownOffAlt';
 import ThumbDownAltIcon from '@mui/icons-material/ThumbDownAlt';
-import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import Rating from '@mui/material/Rating';
-import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import SendIcon from '@mui/icons-material/Send';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 /**
  * COMPONENT
  */
+
 class AddNn extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       nnTitle: '',
       description: '',
-      isNice: false,
-      isNaughty: false,
+      isNice: 'false',
+      isNaughty: 'false',
+      myImage: {},
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleFileUpload = this.handleFileUpload.bind(this);
   }
   handleSubmit(e) {
     e.preventDefault();
@@ -39,18 +38,32 @@ class AddNn extends React.Component {
       this.state.isNaughty === 'true'
     ) {
       alert('Was it Nice or Naughty? Choose just One');
+    } else if (
+      this.state.isNice === 'false' &&
+      this.state.isNaughty === 'false'
+    ) {
+      alert('Was it Nice or Naughty? Choose One');
     } else {
-      this.props.addNnlist(this.props.auth.id, this.state);
-      this.props.history.push('./');
+      const formData = new FormData();
+      formData.append('myImage', this.state.myImage);
+      formData.append('nnTitle', this.state.nnTitle);
+      formData.append('description', this.state.description);
+      formData.append('isNice', this.state.isNice);
+      formData.append('isNaughty', this.state.isNaughty);
+      this.props.addNnlist(this.props.auth.id, formData);
     }
   }
 
   handleChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
+
+  handleFileUpload(e) {
+    this.setState({ myImage: e.target.files[0] });
+  }
+
   render() {
-    const { handleSubmit, handleChange } = this;
-    const { isNice } = this.state;
+    const { handleSubmit, handleChange, handleFileUpload } = this;
     return (
       <Box>
         <form onSubmit={handleSubmit}>
@@ -71,6 +84,13 @@ class AddNn extends React.Component {
             sx={{
               width: 320,
             }}
+          />
+          <input
+            type="file"
+            label="Image"
+            name="myFile"
+            accept=".jpeg, .png, .jpg"
+            onChange={handleFileUpload}
           />
           <div>
             <FormControlLabel

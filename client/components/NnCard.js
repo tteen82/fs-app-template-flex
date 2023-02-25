@@ -1,18 +1,14 @@
 import React from 'react';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import Paper from '@mui/material/Paper';
 import timeAgo from 'node-time-ago';
 /**
  * COMPONENT
  */
 export const NnCard = ({ list }) => {
-  const { nnTitle, isNice, createdAt } = list;
+  const { nnTitle, isNice, createdAt, user } = list;
   const comments = list.comments || [];
   return (
     <Box>

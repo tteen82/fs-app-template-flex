@@ -14,6 +14,10 @@ import Button from '@mui/material/Button';
  */
 export const Home = ({ auth }) => {
   const name = auth.username.charAt(0).toUpperCase() + auth.username.slice(1);
+  let showingPoint = auth.nicePoint;
+  if (auth.nicePoint > 10) {
+    showingPoint = 10;
+  }
   return (
     <div>
       <Box
@@ -25,7 +29,7 @@ export const Home = ({ auth }) => {
       >
         <h3>Welcome, {name}</h3>
         <h4>
-          Your Nice Point : {'😀'.repeat(auth.nicePoint)}({auth.nicePoint})
+          Your Nice Point : {'😀'.repeat(showingPoint)}({auth.nicePoint})
         </h4>
         <Link to="/home/addlist">
           <Button variant="contained" endIcon={<PostAddIcon />}>
