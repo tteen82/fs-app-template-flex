@@ -28,7 +28,7 @@ export const addNnlist = (id, data) => {
   return async (dispatch) => {
     const response = await axios.post(`/api/nnlists/${id}`, data);
     dispatch({ type: 'ADD_NNLIST', nnList: response.data });
-    history.push('./');
+    history.push('../');
   };
 };
 
@@ -36,7 +36,7 @@ export const deleteNnList = (id) => {
   return async (dispatch) => {
     await axios.delete(`/api/nnlists/${id}`);
     dispatch({ type: 'DELETE_NNLIST', id });
-    history.push('./');
+    history.push('../');
   };
 };
 
