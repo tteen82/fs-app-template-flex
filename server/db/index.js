@@ -4,7 +4,7 @@ const db = require('./db');
 
 const User = require('./models/User');
 const Comment = require('./models/Comment');
-const NnList = require('./models/Nnlist');
+const NnList = require('./models/NnList');
 
 //associations could go here!
 
