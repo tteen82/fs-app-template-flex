@@ -20,10 +20,8 @@ class Nnlists extends React.Component {
   componentDidMount() {
     if (this.props.auth.username === 'santa') {
       this.props.setSantaLists();
-      this.props.loadInitialData();
     } else {
       this.props.setNnlists(this.props.auth.id);
-      this.props.loadInitialData();
     }
   }
   componentDidUpdate() {
