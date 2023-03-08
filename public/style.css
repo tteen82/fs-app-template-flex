@@ -20,17 +20,11 @@ form div {
   display: inline-block;
 }
 
-#smlist {
-  display: flex;
-  flex-wrap: wrap;
-}
-
 #main {
   margin: auto;
   display: flex;
   align-items: left;
   flex-direction: column;
-  width: 50%;
 }
 
 #login {

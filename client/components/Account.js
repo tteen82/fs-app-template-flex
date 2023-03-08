@@ -43,7 +43,12 @@ class Account extends React.Component {
     return (
       <Box>
         <Card
-          sx={{ width: 450, backgroundColor: '#F2F4F4', margin: 1, padding: 2 }}
+          sx={{
+            backgroundColor: '#F2F4F4',
+            margin: 1,
+            padding: 2,
+            margin: 'auto',
+          }}
         >
           <CardContent>
             <Typography variant="h5" component="div">

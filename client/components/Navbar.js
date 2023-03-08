@@ -4,18 +4,35 @@ import { Link } from 'react-router-dom';
 import { logout } from '../store';
 import Typography from '@mui/material/Typography';
 import Toolbar from '@mui/material/Toolbar';
+import Box from '@mui/material/Box';
 
 const Navbar = ({ handleClick, isLoggedIn }) => (
   <div>
-    <Typography variant="h1" component="div" sx={{}}>
-      inSantagram
-    </Typography>
-    <Typography variant="h6" component="div" sx={{ marginLeft: '20px' }}>
-      RU Nice or Naughty?
-    </Typography>
-    <nav>
+    <Box sx={{ padding: '1rem' }}>
+      <Typography
+        variant="h1"
+        component="div"
+        sx={{ fontSize: '4rem', margin: 'auto' }}
+      >
+        inSantagram
+      </Typography>
+      <Typography
+        variant="h6"
+        component="div"
+        sx={{ marginLeft: '20px', fontSize: '1rem' }}
+      >
+        RU Nice or Naughty?
+      </Typography>
+    </Box>
+    <nav style={{ width: '100%' }}>
       {isLoggedIn ? (
-        <Toolbar sx={{ backgroundColor: '#A3E4D7' }}>
+        <Toolbar
+          sx={{
+            backgroundColor: '#A3E4D7',
+            display: 'flex',
+            justifyContent: 'space-around',
+          }}
+        >
           {/* The navbar will show these links after you log in */}
           <Link to="/home">
             <Typography
@@ -48,7 +65,13 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
       ) : (
         <div>
           {/* The navbar will show these links before you log in */}
-          <Toolbar sx={{ backgroundColor: '#A3E4D7' }}>
+          <Toolbar
+            sx={{
+              backgroundColor: '#A3E4D7',
+              display: 'flex',
+              justifyContent: 'space-around',
+            }}
+          >
             <Link to="/login">
               <Typography
                 variant="h6"

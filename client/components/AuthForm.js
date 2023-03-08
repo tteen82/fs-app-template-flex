@@ -13,7 +13,12 @@ const AuthForm = (props) => {
 
   return (
     <Box sx={{ padding: 5 }}>
-      <form onSubmit={handleSubmit} name={name} id="login">
+      <form
+        onSubmit={handleSubmit}
+        name={name}
+        id="login"
+        style={{ display: 'flex', flexWrap: 'wrap' }}
+      >
         <TextField id="username" label="Username" name="username" />
         <TextField id="password" label="Password" name="password" />
         <Button

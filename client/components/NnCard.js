@@ -15,8 +15,6 @@ export const NnCard = ({ list }) => {
       {isNice ? (
         <Card
           sx={{
-            width: 200,
-            height: 200,
             margin: 1,
             padding: 1,
             backgroundColor: '#D4EFDF',
@@ -45,8 +43,6 @@ export const NnCard = ({ list }) => {
       ) : (
         <Card
           sx={{
-            width: 200,
-            height: 200,
             margin: 1,
             padding: 1,
             backgroundColor: '#F1948A',

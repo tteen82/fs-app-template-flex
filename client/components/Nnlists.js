@@ -4,6 +4,7 @@ import { setNnlists, setSantaLists, me } from '../store';
 import NnCard from './NnCard';
 import { Link, Switch, Route } from 'react-router-dom';
 import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
 
 /**
  * COMPONENT
@@ -48,7 +49,11 @@ class Nnlists extends React.Component {
     const nnLists = this.state.nnList || [];
     const { handleClick } = this;
     return (
-      <div>
+      <Box
+        sx={{
+          padding: '0.5rem',
+        }}
+      >
         <form onClick={handleClick}>
           <Button
             value="all"
@@ -69,7 +74,13 @@ class Nnlists extends React.Component {
             Show Naughty
           </Button>
         </form>
-        <div id="smlist">
+        <Box
+          sx={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            alignItems: 'center',
+          }}
+        >
           {nnLists.map((list) => (
             <Link
               key={list.id}
@@ -83,8 +94,8 @@ class Nnlists extends React.Component {
               <NnCard list={list} />
             </Link>
           ))}
-        </div>
-      </div>
+        </Box>
+      </Box>
     );
   }
 }
