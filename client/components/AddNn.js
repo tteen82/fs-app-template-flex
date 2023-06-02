@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addNnlist, me } from '../store';
+import { addNnlist } from '../store';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
@@ -137,6 +137,9 @@ class AddNn extends React.Component {
 const mapDispatchToProps = (dispatch) => ({
   addNnlist: (id, data) => {
     dispatch(addNnlist(id, data));
+  },
+  meAgain: (id) => {
+    dispatch(meAgain(id));
   },
 });
 

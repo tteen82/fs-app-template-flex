@@ -1,5 +1,6 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { meAgain } from '../store';
 import Nnlists from './Nnlists';
 import SingleNn from './SingleNn';
 import AddNn from './AddNn';
@@ -12,7 +13,13 @@ import Button from '@mui/material/Button';
 /**
  * COMPONENT
  */
-export const Home = ({ auth }) => {
+const Home = () => {
+  const { auth } = useSelector((state) => state);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(meAgain(auth.id));
+  }, []);
+
   const name = auth.username.charAt(0).toUpperCase() + auth.username.slice(1);
   let showingPoint = auth.nicePoint;
   if (auth.nicePoint > 10) {
@@ -51,4 +58,4 @@ export const Home = ({ auth }) => {
  * CONTAINER
  */
 
-export default connect((state) => state)(Home);
+export default Home;

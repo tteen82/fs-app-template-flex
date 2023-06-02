@@ -29,6 +29,13 @@ export const me = () => async (dispatch) => {
   }
 };
 
+export const meAgain = (id) => {
+  return async (dispatch) => {
+    const res = await axios.get(`/api/users/${id}`);
+    dispatch(setAuth(res.data));
+  };
+};
+
 export const authenticate =
   (username, password, method) => async (dispatch) => {
     try {

@@ -28,7 +28,8 @@ router.post('/signup', async (req, res, next) => {
 
 router.get('/me', async (req, res, next) => {
   try {
-    res.send(await User.findByToken(req.headers.authorization));
+    const user = await User.findByToken(req.headers.authorization);
+    res.send(user);
   } catch (ex) {
     next(ex);
   }
@@ -36,7 +37,6 @@ router.get('/me', async (req, res, next) => {
 
 router.put('/:id', async (req, res, next) => {
   try {
-    console.log('herss req.body', req.body);
     req.body.password = await bcrypt.hash(req.body.password, 5);
     await User.update(req.body, { where: { id: req.params.id } });
     res.send(await User.findByPk(req.params.id));

@@ -59,13 +59,23 @@ router.post('/:id', upload.single('myImage'), async (req, res, next) => {
       imageUrl: '../../' + imageName,
     });
     const user = await User.findByPk(req.params.id);
+    // if (req.body.isNaughty === 'true') {
+    //   user.naughtyPoint += 1;
+    //   user.save();
+    // } else if (req.body.isNice === 'true') {
+    //   user.nicePoint += 1;
+    //   user.save();
+    // }
+
     if (req.body.isNaughty === 'true') {
-      user.naughtyPoint += 1;
-      user.save();
+      // user.naughtyPoint += 1;
+      // user.save();
     } else if (req.body.isNice === 'true') {
       user.nicePoint += 1;
       user.save();
+      await User.update(user, { where: { id: req.params.id } });
     }
+
     res.json(newEntry);
   } catch (err) {
     next(err);
